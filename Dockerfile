@@ -16,7 +16,7 @@
 FROM phusion/baseimage:0.9.22
 
 # Set up Version
-ENV version=2.0.0
+ENV version=3.0.0
 
 # Working directory for Corda
 WORKDIR /opt/corda
@@ -43,21 +43,13 @@ RUN groupadd corda \
 # Create /opt/corda directory
 RUN mkdir -p /opt/corda/logs && mkdir -p /opt/service/corda
 
-# COPY corda-$version.sh /opt/service/corda/run
-COPY corda-$version.sh /opt/corda/
-
 # Copy corda jar
-ADD https://dl.bintray.com/r3/corda/net/corda/corda/$version/corda-$version.jar /opt/corda/corda.jar
+ADD http://central.maven.org/maven2/net/corda/corda/corda-3.0/corda-corda-3.0.jar /opt/corda/corda.jar
 
 # Fix permissions for Openshift security contexts
-RUN chmod +x /opt/corda/corda-$version.sh \
- && chgrp -R 0 /opt/corda \
+RUN chgrp -R 0 /opt/corda \
  && chmod -R g=u /opt/corda \
- && /opt/corda/corda-2.0.0.sh \
  && chown -R corda:corda /opt/corda
-
-# Expose port for corda (default is 10002)
-EXPOSE 10002
 
 USER corda
 

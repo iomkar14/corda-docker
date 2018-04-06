@@ -3,6 +3,7 @@
 export CORDA_HOST="${CORDA_HOST:-localhost}"
 export CORDA_PORT_P2P="${CORDA_PORT:-10002}"
 export CORDA_PORT_RPC="${CORDA_PORT:-10003}"
+export CORDA_PORT_RPC_ADMIN="${CORDA_PORT:-10004}"
 export CORDA_LEGAL_NAME="${CORDA_LEGAL_NAME:-Corda Test Node}"
 export CORDA_ORG="${CORDA_ORG:-CordaTest}"
 export CORDA_ORG_UNIT="${CORDA_ORG_UNIT:-CordaTest}"
@@ -16,11 +17,14 @@ cat > node.conf << EOF
 basedir : "/opt/corda"
 p2pAddress : "$CORDA_HOST:$CORDA_PORT_P2P"
 rpcAddress : "$CORDA_HOST:$CORDA_PORT_RPC"
+rpcSettings {
+    address="$CORDA_HOST:$CORDA_PORT_RPC"
+    adminAddress="$CORDA_HOST:$CORDA_PORT_RPC_ADMIN"
+}
 h2port : 11000
 myLegalName : "O=${CORDA_ORG}, L=${CORDA_CITY}, C=${CORDA_COUNTRY}"
 keyStorePassword : "cordacadevpass"
 trustStorePassword : "trustpass"
-extraAdvertisedServiceIds: [ "" ]
 useHTTPS : false
 devMode : true
 rpcUsers=[
