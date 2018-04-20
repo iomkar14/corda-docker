@@ -1,5 +1,5 @@
 # corda-docker
-Based on Alphine, non-root user and tested in Kubernetes and OpenShift.
+Based on Alpine, non-root user and tested in Kubernetes and OpenShift.
 
 ## Usage
 Certificates, plugins and node.conf should be added to child images or mounted as volumes on container.
@@ -7,10 +7,11 @@ Certificates, plugins and node.conf should be added to child images or mounted a
 ## Supported tags and respective `Dockerfile` links
 
 * `1.0` [_(1.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/1.0)
-* `2.0`, `latest` [_(2.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/2.0)
+* `2.0`,[_(2.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/2.0)
+* `3.0`, `latest` [_(3.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/3.0)
 
 ## Quick reference
-Documentation: [Corda Docs v1.0](https://docs.corda.net/releases/release-V1.0/) or [Corda Doc v2.0](https://docs.corda.net/releases/release-V2.0/)
+Documentation: [Corda Docs v1.0](https://docs.corda.net/releases/release-V1.0/), [Corda Doc v2.0](https://docs.corda.net/releases/release-V2.0/) or [Corda Doc v3.0](https://docs.corda.net/releases/release-V3.0/)
 
 Where to get help: [Corda Community Slack](https://slack.corda.net/), [Corda Discourse Forum](https://discourse.corda.net/)
 
@@ -37,7 +38,7 @@ https://docs.corda.net/
 * `docker run -it --rm --name corda corda ` - this will start up an interactive container using the base image you built
 
 ## Child images
-If you want to do more with this base image, you will need to add the required corda files. The image expects `/opt/corda/plugins`, `/opt/corda/certificates`, `/opt/corda/logs`, `/opt/corda/corda.jar` and `opt/corda/node.conf`. There are two ways you can reference these files and folders in your image.
+If you want to do more with this base image, you will need to add the required corda files. The image expects `/opt/corda/cordapps`, `/opt/corda/certificates`, `/opt/corda/logs`, `/opt/corda/corda.jar` and `opt/corda/node.conf`. There are two ways you can reference these files and folders in your image.
 
 ### Copying files directly
 You can copy the required files across directly into the image from a local directory - see below.
@@ -46,7 +47,7 @@ You can copy the required files across directly into the image from a local dire
 FROM bluebankio/corda-docker
 
 # Copying required folders
-COPY /plugins/ /opt/corda/plugins
+COPY /plugins/ /opt/corda/cordapps
 COPY /certificates/ /opt/corda/certificates
 COPY /logs/ /opt/corda/logs
 
@@ -59,7 +60,7 @@ You could also mount a volume that uses a fixed location for the files to be ref
 
 ```
 docker build -t corda . 
-docker run -it --rm --name corda corda -v plugins:/opt/corda/plugins -v certificates:/opt/corda/certificates -v logs:/opt/corda/logs -v corda.jar:/opt/corda -v node.conf:/opt/corda
+docker run -it --rm --name corda corda -v cordapps:/opt/corda/cordapps -v certificates:/opt/corda/certificates -v logs:/opt/corda/logs -v corda.jar:/opt/corda -v node.conf:/opt/corda
 ```
 
 
@@ -71,7 +72,10 @@ This is the default image, enough to get you started. If you want to do more tha
 This image is using corda v1.0 as the base. Please see [here](https://docs.corda.net/releases/release-V1.0/) for further information on v1.0 of corda.
 
 ### corda:v2.0
-This image is using corda v1.0 as the base. Please see [here](https://docs.corda.net/releases/release-V2.0/) for further information on v2.0 of corda.
+This image is using corda v2.0 as the base. Please see [here](https://docs.corda.net/releases/release-V2.0/) for further information on v2.0 of corda.
+
+### corda:v3.0
+This image is using corda v3.0 as the base. Please see [here](https://docs.corda.net/releases/release-V3.0/) for further information on v3.0 of corda.
 
 ## Acknowledgments and Authors
 This project acknowledges the contributions provided by
