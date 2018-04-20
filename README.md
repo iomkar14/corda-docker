@@ -1,5 +1,5 @@
 # corda-docker
-Based on Alphine, non-root user and tested in Kubernetes and OpenShift.
+Based on Alpine, non-root user and tested in Kubernetes and OpenShift.
 
 ## Usage
 Certificates, plugins and node.conf should be added to child images or mounted as volumes on container.
@@ -7,7 +7,8 @@ Certificates, plugins and node.conf should be added to child images or mounted a
 ## Supported tags and respective `Dockerfile` links
 
 * `1.0` [_(1.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/1.0)
-* `2.0`, `latest` [_(2.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/2.0)
+* `2.0`,[_(2.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/2.0)
+* `3.0`, `latest` [_(3.0/Dockerfile)_](https://github.com/bluebankio/corda-docker/tree/3.0)
 
 ## Quick reference
 Documentation: [Corda Docs v1.0](https://docs.corda.net/releases/release-V1.0/), [Corda Doc v2.0](https://docs.corda.net/releases/release-V2.0/) or [Corda Doc v3.0](https://docs.corda.net/releases/release-V3.0/)
