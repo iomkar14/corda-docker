@@ -44,7 +44,7 @@ RUN groupadd corda \
 RUN mkdir -p /opt/corda/logs && mkdir -p /opt/service/corda
 
 # Copy corda jar
-ADD http://central.maven.org/maven2/net/corda/corda/corda-3.0/corda-corda-3.0.jar /opt/corda/corda.jar
+ADD http://dl.bintray.com/r3/corda/net/corda/corda-core/4.3/corda-core-4.0.jar /opt/corda/corda.jar
 
 # Fix permissions for Openshift security contexts
 RUN chgrp -R 0 /opt/corda \
